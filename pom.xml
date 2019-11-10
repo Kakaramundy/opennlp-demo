@@ -12,5 +12,25 @@
 			<version>1.5.3</version>
 		</dependency>
 	</dependencies>
+	
+	 <build>
+    <sourceDirectory>src</sourceDirectory>
+   
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-site-plugin</artifactId>
+    	<version>3.7.1</version>
+      </plugin>
+      
+    </plugins>
+  </build>
 
 </project>
