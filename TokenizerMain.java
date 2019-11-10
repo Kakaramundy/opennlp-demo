@@ -1,7 +1,7 @@
 
 package org.fogbeam.example.opennlp;
 
-
+import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,36 +21,30 @@ public class TokenizerMain
 	public static void main( String[] args ) throws Exception,FileNotFoundException, IOException
 	{
 		
-		// the provided model
-		// InputStream modelIn = new FileInputStream( "models/en-token.bin" );
-		String nombreArchivo="Prueba.txt";
+		String archivoEntrada="Entrada.txt";
+		String archivoSalida="Salida.txt";
 		String cadena;
 		StringBuilder contentBuilder = new StringBuilder();
-        FileReader f = new FileReader("C:\\Users\\AlejandroDorta\\Downloads\\opennlp-demo-master\\src\\main\\java\\org\\fogbeam\\example\\opennlp\\" + nombreArchivo);
+        FileReader f = new FileReader("C:\\Users\\AlejandroDorta\\Downloads\\opennlp-demo-master\\src\\main\\java\\org\\fogbeam\\example\\opennlp\\" + archivoEntrada);
         BufferedReader b = new BufferedReader(f);
+        
         while((cadena = b.readLine())!=null) {
             
             contentBuilder.append(cadena).append("\n");
         }
         b.close();
         System.out.println(contentBuilder.toString());
-		// the model we trained
 		InputStream modelIn = new FileInputStream( "models/en-token.model" );
-		
 		try
-		{
+		{      
 			TokenizerModel model = new TokenizerModel( modelIn );
-		
 			Tokenizer tokenizer = new TokenizerME(model);
-			
 				/* note what happens with the "three depending on which model you use */
 			String[] tokens = tokenizer.tokenize( contentBuilder.toString()  );
-			
 			for( String token : tokens )
 			{
 				System.out.println( token );
 			}
-			
 		}
 		catch( IOException e )
 		{
